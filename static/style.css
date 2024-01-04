@@ -1,0 +1,201 @@
+*{
+    margin: 0;
+}
+
+.navigation_block {
+    display: inline-block;
+    width: 150px;
+    height: 350px;
+    background-color: aqua;
+    margin-top: 110px;
+    margin-left: 40px;
+    margin-right: 80%;
+    text-align: left;
+
+}
+
+.in_nav_block {
+    list-style: none;
+}
+
+.in_nav_block li {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.site_icon {
+    display: block;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+
+button.LK{
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    margin: 10px; 
+    width: 40px;
+    height: 40px;
+}
+
+.comp_name{
+    font-size: 40px;
+    position: absolute;
+    top: 20px;
+    left: 140px;
+}
+.comp{
+    position: absolute;
+    font-size: 24;
+    top: 65px;
+    left: 142px;
+}
+
+/*--------------------*/
+.table-container {
+    position: relative;
+    margin: auto;
+}
+
+.checkbox-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 5px;
+}
+
+.pagination {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.fill-form {
+    position: absolute;
+    top: 24px;
+    right: 5%;
+    
+}
+.search-form{
+    margin-top: 3%;
+    margin-left: 5%;
+    
+}
+
+.form-container {
+    width: 800px;
+    height: 500px;
+    margin: auto; /* Центрируем форму по горизонтали */
+    position: relative;
+    border: 2px solid black; 
+    background-color: beige;
+}
+
+.table-container table {
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 90%;
+    height: 350px;
+    border-collapse: collapse; 
+    background-color: azure;
+}
+
+.table-container th,
+.table-container td {
+    border: 2px solid black;
+    padding: 8px; 
+    text-align: center;
+}
+.table-container th{
+    background-color: rgb(176, 176, 176);
+}
+
+.pagination button {
+    display: inline-block;
+    padding: 5px 10px; 
+    margin-right: 5px; 
+    border: 1px solid black; 
+}
+
+.pagination span{
+    padding: 1px 8px;
+    margin-right: 5px;
+    border: 1px solid black;
+    background-color: rgb(176, 176, 176);
+}
+
+/*------------------------------------------------*/
+
+.table-container2 {
+    position: relative;
+    margin: auto;
+}
+
+.checkbox-list2 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 5px;
+}
+
+.expirience {
+    position: absolute;
+    top: 24px;
+    right: 5%;
+    
+}
+
+.lan-checkbox{
+    margin-top: 3%;
+}
+
+.lan-checkbox input{
+    margin-left: 5%;
+}
+
+.form-container2 {
+    width: 800px;
+    height: 520px;
+    
+    margin: auto; /* Центрируем форму по горизонтали */
+    position: relative;
+    border: 2px solid black; 
+    background-color: beige;
+    margin-top: 80px;
+}
+
+.table-container2 table {
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 90%;
+    height: 350px;
+    border-collapse: collapse; 
+    background-color: azure;
+}
+
+.table-container2 th,
+.table-container2 td {
+    border: 2px solid black;
+    padding: 8px; 
+    text-align: center;
+}
+.table-container2 th{
+    background-color: rgb(176, 176, 176);
+}
+
+.footer{
+    margin-top: 10px;
+    background-color: rgb(41, 41, 41);
+    height: 60px;
+}
+
+.container p{
+    margin-top: 8px;
+    margin-left: 50px;
+}
