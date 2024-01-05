@@ -79,11 +79,7 @@ ul{
     padding: 5px;
 }
 
-.pagination {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-}
+
 
 .fill-form {
     position: absolute;
@@ -99,7 +95,6 @@ ul{
 
 .form-container {
     width: 800px;
-    
     margin: auto; 
     margin-top: 15%;
     position: relative;
@@ -111,7 +106,6 @@ ul{
     margin-top: 5%;
     margin-left: 5%;
     width: 90%;
-    height: 350px;
     border-collapse: collapse; 
     background-color: azure;
 }
@@ -121,25 +115,46 @@ ul{
     border: 2px solid black;
     padding: 8px; 
     text-align: center;
+    max-height: 110px;
+    overflow: auto;
 }
+
 .table-container th{
     background-color: rgb(176, 176, 176);
 }
 
-.pagination button {
-    display: inline-block;
-    padding: 5px 10px; 
-    margin-right: 5px; 
-    border: 1px solid black; 
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.pagination span{
+.pagination button {
+    display: inline;
+    padding: 5px 10px; 
+    margin: 20px;
+    border: 1px solid black; 
+}
+.pagination ul{
+    text-align: center;
+    list-style: none;
+}
+
+.pagination li{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
     padding: 1px 8px;
     margin-right: 5px;
     border: 1px solid black;
     background-color: rgb(176, 176, 176);
 }
 
+.pagination li:active{
+    background-color: rgb(112, 112, 255);
+}
 /*------------------------------------------------*/
 
 .table-container2 {
