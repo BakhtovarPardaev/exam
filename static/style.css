@@ -2,41 +2,48 @@
     margin: 0;
 }
 
-.navigation_block {
-    display: inline-block;
-    width: 150px;
-    height: 350px;
-    background-color: aqua;
-    margin-top: 110px;
-    margin-left: 40px;
-    margin-right: 80%;
-    text-align: left;
-
-}
-
-.in_nav_block {
-    list-style: none;
-}
-
-.in_nav_block li {
-    font-size: 20px;
-    margin-top: 20px;
+header{
+    background-color: rgb(93, 90, 90);
 }
 
 .site_icon {
+    display: inline-block;
+    margin: 30px;
+    
+}
+.navig{
     display: block;
-    margin-top: 30px;
-    margin-left: 40px;
+    position: absolute;
+    right: 3%;
+    margin-top: 1.5%;
+    max-width: 50%;
+    
+    
+}
+
+ul{
+    margin: revert;
+    list-style: none; 
 }
 
 
-button.LK{
-    position: absolute;
-    top: 15px;
-    right: 30px;
-    margin: 10px; 
-    width: 40px;
-    height: 40px;
+
+.navig a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 13px;
+}
+
+.navig span{
+    margin-left: 40px;
+}
+.navig a:hover {
+    color: black;
+    background-color: rgb(206, 203, 158);
+    transition: color 0.5s, border-color 0.5s, background-color 1s;
 }
 
 .comp_name{
@@ -50,6 +57,10 @@ button.LK{
     font-size: 24;
     top: 65px;
     left: 142px;
+}
+
+.aboutComp p{
+    margin-left: 5%;
 }
 
 /*--------------------*/
@@ -70,6 +81,7 @@ button.LK{
 
 .pagination {
     margin-top: 10px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -87,8 +99,9 @@ button.LK{
 
 .form-container {
     width: 800px;
-    height: 500px;
-    margin: auto; /* Центрируем форму по горизонтали */
+    
+    margin: auto; 
+    margin-top: 15%;
     position: relative;
     border: 2px solid black; 
     background-color: beige;
@@ -161,9 +174,7 @@ button.LK{
 
 .form-container2 {
     width: 800px;
-    height: 520px;
-    
-    margin: auto; /* Центрируем форму по горизонтали */
+    margin: auto; 
     position: relative;
     border: 2px solid black; 
     background-color: beige;

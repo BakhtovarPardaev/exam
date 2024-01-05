@@ -8,153 +8,161 @@
     <link rel="icon" href="static/image/iconn.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="mycabinet.html">
-    <link href="static/scrypt.js">
+    <script src="static/scrypt.js" defer></script>
     <link rel="stylesheet" href="static/style.css">
 </head>
 
 <body>
-    <div class="site_icon">
-        <img src="static/image/Без имени.jpg" alt="iconka" width="70px" height="70px">
-        <span class="comp_name">Компас</span>
-        <span class="comp">Путешествия по Москве</span>
-    </div>
-    <a href="mycabinet.html">
-        <button class="LK">ЛК</button>
-    </a>
+    <header>
+        <nav class="navig">
+            <ul>
+                <span><a class="btn" href="mycabinet.html">Xnjnj</a></li>
+                <span><a class="btn" href="mycabinet.html">uedu</a></li>
+                <span><a class="btn" href="mycabinet.html">LK</a></li>
+            </ul>
 
-    <div class="navigation_block">
-        <ul class="in_nav_block">
-            <li>num1</li>
-            <li>mun2</li>
-            <li>num3</li>
-            <li>num4</li>
-            <li>num4</li>
-        </ul>
-    </div>
-
-
-    <div class="form-container">
-        <div class="search-form">
-            <input type="text" placeholder="Поиск" style="width: 120px; height: 25px;">
+        </nav>
+        <div class="site_icon">
+            <img src="static/image/Без имени.jpg" alt="iconka" width="70px" height="70px">
+            <span class="comp_name">Компас</span>
+            <span class="comp">Путешествия по Москве</span>
         </div>
-        <div class="fill-form">
-            <input type="text" placeholder="Цель" style="width: 100px; height: 25px;">
+    </header>
+
+    <main>
+        <div class="aboutComp">
+            <img src="static/image/Без имени.jpg" alt="compimage" width="100%" height="150px">
+            <p>
+                uvfehfbubfvubvbbsvfs  eribvubrfbubvf eiuibuvauvbuivbsubafivurenvuifbv
+                avivbrubsvbfvhbfv fvuebvbf    fvebfvuebbvibduybvdbve vevybfiabvfvvfbbbbbbbbbbbbb
+            </p>
         </div>
 
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Название</th>
-                        <th>Описание</th>
-                        <th>Объекты</th>
-                        <th>Достопримечательности</th>
-                    </tr>
-                </thead>
+        <div class="form-container">
+            <div class="search-form">
+                <input id="search" type="text" placeholder="Поиск" style="width: 120px; height: 25px;">
+            </div>
+            <div class="fill-form">
+                <input id="fill" type="text" placeholder="Цель" style="width: 100px; height: 25px;">
+            </div>
 
-                <tbody>
-                    <tr>
-                        <td>Новичек</td>
-                        <td>Для новичков</td>
-                        <td>Красная площадь</td>
-                        <td>
-                            <button class="select-button" onclick="">Выбрать</button>
-                            <div class="checkbox-list">
-                                <input type="checkbox" id="checkbox1"> <label for="checkbox1">1</label><br>
-                                <input type="checkbox" id="checkbox2"> <label for="checkbox2">2</label><br>
-                                <input type="checkbox" id="checkbox3"> <label for="checkbox3">3</label>
-                            </div>
-                        </td>
-                    </tr>
+            <div class="table-container">
+                <table id="tableRoute">
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Описание</th>
+                            <th>Объекты</th>
+                            <th>Достопримечательности</th>
+                        </tr>
+                    </thead>
 
-                    <tr>
-                        <td>почти новичек</td>
-                        <td>Для почти новичков</td>
-                        <td>Красная площадь и москва сити</td>
-                        <td>
-                            <button class="select-button" onclick="">Выбрать</button>
-                            <div class="checkbox-list">
-                                <input type="checkbox" id="checkbox1"> <label for="checkbox1">1</label><br>
-                                <input type="checkbox" id="checkbox2"> <label for="checkbox2">2</label><br>
-                                <input type="checkbox" id="checkbox3"> <label for="checkbox3">3</label>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                    <tbody>
+                        <tr>
+                            <td>Новичек</td>
+                            <td>Для новичков</td>
+                            <td>Красная площадь</td>
+                            <td>
+                                <button class="select-button" onclick="">Выбрать</button>
+                                <div class="checkbox-list">
+                                    <input type="checkbox" id="checkbox1"> <label for="checkbox1">1</label><br>
+                                    <input type="checkbox" id="checkbox2"> <label for="checkbox2">2</label><br>
+                                    <input type="checkbox" id="checkbox3"> <label for="checkbox3">3</label>
+                                </div>
+                            </td>
+                        </tr>
 
-            <div class="pagination">
-                <button onclick="">Назад</button>
-                <span id="cur-P">1</span>
-                <span id="cur-P">2</span>
-                <span id="cur-P">3</span>
-                <span id="cur-P">4</span>
-                <span id="cur-P">5</span>
-                <span id="cur-P">6</span>
-                <button onclick="">Вперед</button>
+                        <tr>
+                            <td>почти новичек</td>
+                            <td>Для почти новичков</td>
+                            <td>Красная площадь и москва сити</td>
+                            <td>
+                                <button class="select-button" onclick="">Выбрать</button>
+                                <div class="checkbox-list">
+                                    <input type="checkbox" id="checkbox1"> <label for="checkbox1">1</label><br>
+                                    <input type="checkbox" id="checkbox2"> <label for="checkbox2">2</label><br>
+                                    <input type="checkbox" id="checkbox3"> <label for="checkbox3">3</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                    <button id="back">Назад</button>
+                    <span id="curP">1</span>
+                    <span id="curP">2</span>
+                    <span id="curP">3</span>
+                    <span id="curP">4</span>
+                    <span id="curP">5</span>
+                    <span id="curP">6</span>
+                    <button id="next">Вперед</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-container2">
+        <div class="form-container2">
 
-        <div class="lan-checkbox">
-            <input type="checkbox" id="checkbox1"> <label for="checkbox1">Нигерский</label><br>
-            <input type="checkbox" id="checkbox2"> <label for="checkbox2">Латынь</label><br>
-            <input type="checkbox" id="checkbox3"> <label for="checkbox3">английский</label>
+            <div class="lan-checkbox">
+                <input type="checkbox" id="checkbox1"> <label for="checkbox1">Нигерский</label><br>
+                <input type="checkbox" id="checkbox2"> <label for="checkbox2">Латынь</label><br>
+                <input type="checkbox" id="checkbox3"> <label for="checkbox3">английский</label>
+            </div>
+
+            <div class="expirience">
+                <span>опыт работы</span>
+                <input type="text" placeholder="От" style="width: 50px; height: 25px;">
+                <input type="text" placeholder="До" style="width: 50px; height: 25px;">
+            </div>
+
+            <div class="table-container2">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Фото</th>
+                            <th>ФИО</th>
+                            <th>Язык</th>
+                            <th>Опыт работы</th>
+                            <th>Стоимость</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td> фото</td>
+                            <td>Салах ад-Дин</td>
+                            <td>Латынь, русский</td>
+                            <td>1180 лет</td>
+                            <td>2 золотых</td>
+                            <td>
+                                <button class="select-button2" onclick="">Выбрать</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>фото</td>
+                            <td>НгЪэнмб</td>
+                            <td>Нигерский, английский, русский</td>
+                            <td>8 лет</td>
+                            <td>1356000 Зимбабвейских долларов</td>
+                            <td>
+                                <button class="select-button2" onclick="">Выбрать</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <div class="expirience">
-            <span>опыт работы</span>
-            <input type="text" placeholder="От" style="width: 50px; height: 25px;">
-            <input type="text" placeholder="До" style="width: 50px; height: 25px;">
-        </div>
+    </main>
 
-        <div class="table-container2">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Фото</th>
-                        <th>ФИО</th>
-                        <th>Язык</th>
-                        <th>Опыт работы</th>
-                        <th>Стоимость</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td> фото</td>
-                        <td>Салах ад-Дин</td>
-                        <td>Латынь, русский</td>
-                        <td>1180 лет</td>
-                        <td>2 золотых</td>
-                        <td>
-                            <button class="select-button2" onclick="">Выбрать</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>фото</td>
-                        <td>НгЪэнмб</td>
-                        <td>Нигерский, английский, русский</td>
-                        <td>8 лет</td>
-                        <td>1356000 Зимбабвейских долларов</td>
-                        <td>
-                            <button class="select-button2" onclick="">Выбрать</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 
     <footer class="footer">
         <div class="container">
             <p>&copy; Все права защишены</p>
-            <p>Фирма не несет ответственности за что бы то ни было, по вине кого бы то ни было</p> 
-        </div> 
+            <p>Фирма не несет ответственности за что бы то ни было, по вине кого бы то ни было</p>
+        </div>
     </footer>
 
 </body>
