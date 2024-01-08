@@ -80,12 +80,15 @@ ul{
 }
 
 
-
-.fill-form {
+.selectB{
     position: absolute;
     top: 24px;
     right: 5%;
-    
+
+}
+select {
+    size: 10pc;
+    max-width: 120px;
 }
 .search-form{
     margin-top: 3%;
@@ -155,10 +158,6 @@ ul{
     background-color: rgb(112, 112, 255);
 }
 
-.selected-row {
-    background-color: red;
-}
-
 /*------------------------------------------------*/
 
 .table-container2 {
@@ -166,15 +165,6 @@ ul{
     margin: auto;
 }
 
-.checkbox-list2 {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    padding: 5px;
-}
 
 .expirience {
     position: absolute;
@@ -184,7 +174,7 @@ ul{
 }
 
 .lan-checkbox{
-    margin-top: 3%;
+    margin-top: 3%;   /*=====-==============================================*/
 }
 
 .lan-checkbox input{

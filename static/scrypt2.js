@@ -1,12 +1,11 @@
+const back = document.getElementById("back");
+const next = document.getElementById("next");
 const sB = document.getElementById("sB");
 const search = document.getElementById("search");
 const fill = document.getElementById("fill");
 let table = document.getElementById('tableRoute');
 let pagination = document.querySelector('.pagination');
-let selectB = document.getElementById('sfill')
-let mmain = document.getElementById('mainn')
 let items = [];
-
 
 let tBody = document.createElement('tbody');
 let iPages = 10;            //кол-во марш на стр
@@ -18,55 +17,6 @@ async function getData() {
     //console.log(typeof(data.length));
     return data;
 }
-
-async function getDataGid(Rid) {
-    const responce = await fetch(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes/${Rid}/guides?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd`);
-    const data = await responce.json();
-    //console.log(typeof(data.length));
-    return data;
-}
-
-async function parser() {
-    let oObject = [];
-    let dataq = await getData();
-    let rez
-    for (let i = 0; i < dataq.length; i++) {
-        rez = "";
-
-        for (let k = 0; k < dataq[i].mainObject.length; k++) {
-
-            if (dataq[i].mainObject[k] == "-" || dataq[i].mainObject[k] == "," || dataq[i].mainObject[k] == "." || dataq[i].mainObject[k] == "n") {
-                if (rez.length > 4 && rez.length < 50) {
-                    oObject.push(rez);
-                    rez = ""
-                }
-            }
-            else {
-                rez += dataq[i].mainObject[k];
-            }
-        }
-    }
-
-    return oObject;
-}
-
-async function selectBB() {
-    let gg = await parser();
-    let optn = document.createElement('option');
-    optn.value = 0;
-    optn.text = "не выбрано";
-    selectB.appendChild(optn);
-
-    for (let i = 0; i < gg.length; i++) {
-        let optn = document.createElement('option');
-        optn.value = i + 1;
-        optn.text = gg[i];
-        selectB.appendChild(optn);
-    }
-}
-
-selectBB();
-
 
 async function pagDraw() {
     let ii;
@@ -159,7 +109,9 @@ async function pagDraw() {
     })
 
     // Добавление слушателей событий для кнопок "Выбрать"
-    addSlBLis();
+    addSelectButtonListeners();
+
+
 }
 
 async function nachP() {
@@ -266,62 +218,20 @@ async function selB(button) {
     }
 }
 
-function addSlBLis() {
+function addSelectButtonListeners() {
     document.querySelectorAll('.select-button').forEach(button => {
-        button.addEventListener('click', SelectBCl);
+        console.log("Click 2")
+        button.addEventListener('click', handleSelectButtonClick);
     });
 }
 
-async function SelectBCl(event) {                                      //нажатие кнопки "Выбрать"
+function handleSelectButtonClick(event) {                                      //нажатие кнопки "Выбрать"
     const selectedRow = event.target.closest('tr');
     const currentColor = selectedRow.style.backgroundColor;
 
     if (currentColor === 'rgb(143, 197, 248)') {
-        selectedRow.style.backgroundColor = '';
+        selectedRow.style.backgroundColor = ''; 
     } else {
         selectedRow.style.backgroundColor = 'rgb(143, 197, 248)';
     }
-
-    if (currentColor !== 'rgb(143, 197, 248)') {
-        const nameV = selectedRow.querySelector('td:first-child').textContent;
-
-        let strr = await getData();
-        let gidID = searchPodstr(strr, nameV)
-        let gidData = await getDataGid(gidID[0]);                                     //из-за 3, 31
-
-        let mainHTML = `<div class="form-container2">
-            <div class="expirience">
-                <span>опыт работы</span>
-                <input type="text" placeholder="От" style="width: 50px; height: 25px;">
-                <input type="text" placeholder="До" style="width: 50px; height: 25px;">
-            </div>
-            <div class="table-container2">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Фото</th>
-                            <th>ФИО</th>
-                            <th>Язык</th>
-                            <th>Опыт работы</th>
-                            <th>Стоимость</th>
-                            <th> </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                           
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            </div>`
-
-        mmain.innerHTML=mainHTML;
-
-
-
-    }
-
 }
-
