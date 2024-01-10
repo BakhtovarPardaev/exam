@@ -13,6 +13,61 @@
 </head>
 
 <body>
+    <div class="modWin" id="modalWin">
+        <div class="modalInside">
+            <p class="FIO"></p>
+            <p class="rName"></p>
+
+            <div class="tripDate">
+                <span>Дата экскурсии</span>
+                <p><input type="text"></p>
+            </div>
+
+            <div class="tripTime">
+                <span>Время экскурсии</span>
+                <p><input type="text"></p>
+            </div>
+
+            <div class="tripDlit">
+                <span>Длительность экскурсии:</span>
+                <select id="Dlit">
+                    <option value="0" selected> </option>
+                    <option value="1">1 час</option>
+                    <option value="2">2 часа</option>
+                    <option value="3">3 часа</option>
+                    <option value="4">4 часа</option>
+                    <option value="5">5 часов</option>
+                </select>
+            </div>
+
+            <div class="humQuantity">
+                <span>Колличество людей</span>
+                <input type="text" id="HQuan">
+            </div>
+
+            <p class="options">Дополнительные опции:
+                <select id="Options">
+                    <option value="1" selected> </option>
+                    <option value="1.2">хочу доплатить</option>
+                    <option value="3">Сурдопереводчик</option>
+                    <option value="0.75">скидка персионерам</option>
+                    <option value="0.95">хочу скидку</option>
+                    <option value="6">хочу бесплатно</option>
+
+                </select>
+                <!-- <p class="translater">сурдопереводчик не доступен. MAX количество 10 человек</p> -->
+            </p>
+
+            <p class="Price">Итоговая стоимость:
+                <span id="Price"></span>
+            </p>
+
+            <div class="Zbutton">
+                <button id="Zcancel">Отменить</button>
+                <button id="Zsend">Отправить</button>
+            </div>
+        </div>
+    </div>
     <header>
         <nav class="navig">
             <ul>
@@ -49,8 +104,8 @@
 
                     </select>
                 </div>
-                
-    
+
+
                 <div class="table-container">
                     <table id="tableRoute">
                         <thead>
@@ -61,51 +116,23 @@
                                 <th>Достопримечательности</th>
                             </tr>
                         </thead>
-    
+
                     </table>
-    
+
                     <div class="pagination">
                         <ul>
-    
+
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        
 
-        <!-- <div class="form-container2">
+        <div class="gidy">
 
-            <div class="expirience">
-                <span>опыт работы</span>
-                <input type="text" placeholder="От" style="width: 50px; height: 25px;">
-                <input type="text" placeholder="До" style="width: 50px; height: 25px;">
-            </div>
-
-            <div class="table-container2">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Фото</th>
-                            <th>ФИО</th>
-                            <th>Язык</th>
-                            <th>Опыт работы</th>
-                            <th>Стоимость</th>
-                            <th> </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                           
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> -->
+        </div>
 
     </main>
-
 
     <footer class="footer">
         <div class="container">

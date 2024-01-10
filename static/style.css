@@ -187,15 +187,18 @@ select {
     position: relative;
     border: 2px solid black; 
     background-color: beige;
+    margin-top: 1.5%;
 }
 
 .table-container2 table {
-    margin-top: 5%;
+    margin-top: 10%;
     margin-left: 5%;
+    margin-bottom: 3%;
     width: 90%;
-    height: 350px;
+    height: 50px;
     border-collapse: collapse; 
     background-color: azure;
+
 }
 
 .table-container2 th,
@@ -232,3 +235,116 @@ h2 {
     margin-top: 5%;
     margin-bottom: 3%;
 }
+
+.gidy{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+/*------------------------------------------------------------*/
+.modWin{
+
+    display: none;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(77, 77, 240, 0.5);
+
+}
+
+.modalInside{
+    max-width: 40%;
+    max-height: 70%;
+    margin: auto;
+    margin-top: 15%;
+    margin-bottom: 25%;
+    background-color: rgb(177, 215, 236);
+    border: 2px rgb(72, 8, 8);
+}
+
+.close{
+    border: 1px solid red;
+    color: black;
+    float: right;
+    border-radius: 4px;
+
+}
+
+.close:hover{
+    background-color: rgb(221, 106, 106);
+}
+
+.FIO{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 2%;
+}
+
+.rName{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 2%;
+}
+
+.Price{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 2%;
+}
+
+
+.modalInside div{
+    margin-top: 20px;
+    margin-left: 4%;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+.tripDlit select{
+    display: flex;
+    margin: auto;
+}
+
+.humQuantity input{
+ width: 40px;
+}
+
+.tripTime input{
+    width: 80px;
+}
+
+.tripDate input{
+    width: 80px;
+}
+
+.options{
+    margin-top: 30px;
+   text-align: center;
+    font-size: 24px;
+}
+
+.opt1{
+    margin-left: 25%;
+    background-color: rgb(177, 255, 177);
+
+}
+.opt2{
+    margin-left: 15%;
+    background-color: rgb(177, 255, 177);
+    
+}
+
+.translater{
+    
+   font-size: 18px;
+   color: red;
+   margin-top: 15px;
+   margin-left: 5%;
+}
+
+.Zbutton{
+    position: relative;
+    margin-left: 90%;
+}
+
+

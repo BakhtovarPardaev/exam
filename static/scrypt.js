@@ -4,7 +4,20 @@ const fill = document.getElementById("fill");
 let table = document.getElementById('tableRoute');
 let pagination = document.querySelector('.pagination');
 let selectB = document.getElementById('sfill')
-let mmain = document.getElementById('mainn')
+let mmain = document.querySelector('.gidy')
+let modW = document.getElementById('modalWin')
+let ZbtnCancel = document.getElementById('Zcancel')
+let ZbtnSend = document.getElementById('Zsend')
+let tripDl = document.getElementById('Dlit')
+let Ooptions = document.getElementById('Options')
+let fio = document.querySelector('.FIO')
+let price = document.getElementById('Price')
+let Rname = document.querySelector('.rName')
+let SOption = document.getElementById('Options')
+let Oclass = document.querySelector('.options')
+let hKol = document.getElementById('HQuan')
+let predupr = "сурдопереводчик не доступен. MAX количество 10 человек"
+let RoName                                                    //RouteName
 let items = [];
 
 
@@ -50,7 +63,7 @@ async function parser() {
     return oObject;
 }
 
-async function selectBB() {
+async function selectBB() {                                
     let gg = await parser();
     let optn = document.createElement('option');
     optn.value = 0;
@@ -105,7 +118,7 @@ async function pagDraw() {
                 <td>${zapis.description}</td> 
                 <td>${zapis.mainObject}</td> 
                 <td>
-                    <button class="select-button" onclick="">Выбрать</button>
+                    <button class="select-button">Выбрать</button>
                 </td>
             </tr>`;
                 tBody.innerHTML = htmlTR;
@@ -210,7 +223,7 @@ function searchPodstr(str, pstr) {
     return rez;
 }
 
-sB.onclick = function () {
+sB.onclick = function () {                                          
     thisPage = 1
     getData().then((datJ) => {
         let DATA = []
@@ -234,7 +247,7 @@ sB.onclick = function () {
                     <td>${zapis.description}</td> 
                     <td>${zapis.mainObject}</td> 
                     <td>
-                        <button class="select-button" onclick="">Выбрать</button>
+                        <button class="select-button">Выбрать</button>
                     </td>
                 </tr>`;
             tBody.innerHTML = htmlTR;
@@ -244,66 +257,57 @@ sB.onclick = function () {
     })
 }
 
-async function selB(button) {
-    // Получаем ближайший родительский элемент tr
-    let row = button;
-    while (row && row.tagName !== 'TR') {
-        row = row.parentNode;
-    }
-
-    // Проверяем, был ли найден родительский элемент
-    if (row && row.tagName === 'TR') {
-        // Изменяем или добавляем стиль фона строки
-        if (row.classList.contains('selected-row')) {
-            row.style.backgroundColor = ''; // Убрать цвет фона
-            row.classList.remove('selected-row');
-        } else {
-            row.style.backgroundColor = 'red'; // Установить цвет фона в красный
-            row.classList.add('selected-row');
-        }
-    } else {
-        console.log("Родительский элемент <tr> не найден.");
-    }
-}
-
 function addSlBLis() {
     document.querySelectorAll('.select-button').forEach(button => {
         button.addEventListener('click', SelectBCl);
     });
 }
 
-async function SelectBCl(event) {                                      //нажатие кнопки "Выбрать"
+
+
+async function SelectBCl(event) {                                //нажатие кнопки "Выбрать" M
     const selectedRow = event.target.closest('tr');
     const currentColor = selectedRow.style.backgroundColor;
 
     if (currentColor === 'rgb(143, 197, 248)') {
+        console.log("dusb 5")
         selectedRow.style.backgroundColor = '';
+        let mainHTML = ""
+        mmain.innerHTML = mainHTML
+
+        let tBody2 = document.createElement('tbody');
+        let table2 = document.getElementById('tableGid');
+
+        let htmlTR = "";
+        tBody2.innerHTML = htmlTR;
+        table2.appendChild(tBody2);
     } else {
         selectedRow.style.backgroundColor = 'rgb(143, 197, 248)';
-    }
-
-    if (currentColor !== 'rgb(143, 197, 248)') {
         const nameV = selectedRow.querySelector('td:first-child').textContent;
+        RoName = nameV;
 
         let strr = await getData();
         let gidID = searchPodstr(strr, nameV)
         let gidData = await getDataGid(gidID[0]);                                     //из-за 3, 31
 
-        let mainHTML = `<div class="form-container2">
+        let mainHTML = `
+        <h2>Доступные гиды</h2>
+        <div class="form-container2">
+            
             <div class="expirience">
                 <span>опыт работы</span>
                 <input type="text" placeholder="От" style="width: 50px; height: 25px;">
                 <input type="text" placeholder="До" style="width: 50px; height: 25px;">
             </div>
             <div class="table-container2">
-                <table>
+                <table id="tableGid">
                     <thead>
                         <tr>
                             <th>Фото</th>
                             <th>ФИО</th>
                             <th>Язык</th>
                             <th>Опыт работы</th>
-                            <th>Стоимость</th>
+                            <th>Стоимость р/час</th>
                             <th> </th>
                         </tr>
                     </thead>
@@ -315,13 +319,104 @@ async function SelectBCl(event) {                                      //наж�
                     </tbody>
                 </table>
             </div>
-            </div>`
+            </div>
+            `
+        mmain.innerHTML = mainHTML
 
-        mmain.innerHTML=mainHTML;
+        let tBody2 = document.createElement('tbody');
+        let table2 = document.getElementById('tableGid');
+        console.log("dusb 1")
 
+        thisPage = 1;
+        let start = (thisPage - 1) * iPages;
+        let end = start + iPages;
 
+        let zapisi2 = gidData.slice(start, end);
+       
 
+        let htmlTR = "";
+
+        for (let zap of zapisi2) {
+            htmlTR += `<tr>
+                <td><img src="static/image/gidPhoto.jpg" alt="gidimage" width="65px" height="55px"></td> 
+                <td>${zap.name}</td> 
+                <td>${zap.language}</td> 
+                <td>${zap.workExperience}</td> 
+                <td>${zap.pricePerHour}</td> 
+                <td>
+                    <button class="select-buttonGid">Выбрать</button>
+                </td>
+            </tr>`;
+            tBody2.innerHTML = htmlTR;
+            table2.appendChild(tBody2);
+        }
     }
+    addSlGidBLis()
 
 }
+
+function addSlGidBLis() {
+    document.querySelectorAll('.select-buttonGid').forEach(button => {
+        button.addEventListener('click', SelectBGidCl);
+    });
+}
+
+
+
+async function SelectBGidCl(event) {                               //нажатие кнопки "Выбрать" G
+    const selectedRow = event.target.closest('tr');
+    const currentColor = selectedRow.style.backgroundColor;
+
+    if (currentColor === 'rgb(143, 197, 248)') {
+        selectedRow.style.backgroundColor = '';
+    } else {
+        selectedRow.style.backgroundColor = 'rgb(143, 197, 248)';
+        modW.style.display = "block";
+
+        let Gname = selectedRow.querySelector('td:nth-child(2)').textContent;
+        let Gprice = selectedRow.querySelector('td:nth-child(5)').textContent;
+        
+        fio.innerText = "ФИО Гида: "+Gname;
+        Rname.innerText = "Название маршрута: "+RoName;
+
+        tripDl.addEventListener('change', function(event){
+            price.innerText = (Number(Gprice)*Number(event.target.value))
+            price.text = (Number(Gprice)*Number(event.target.value))
+
+        })
+
+        SOption.addEventListener('change', function(event){
+            if(event.target.value != 3)
+            {
+                price.innerHTML = price.text
+                price.innerText = Math.ceil(Number(price.innerHTML)*event.target.value);
+            }
+            else{
+                if(hKol.value <=10){
+                    Oclass.lastChild.textContent == predupr? Oclass.lastChild.textContent="" : console.log("Ok")
+                    hKol.value <=5? price.innerText = Math.ceil(Number(price.innerHTML)*1.15) :price.innerText = Math.ceil(Number(price.innerHTML)*1.25)
+
+                }else{
+                    let i = document.createElement('p')
+                    i.className = "translater"
+                    i.textContent = predupr
+                    Oclass.appendChild(i)
+                    price.innerHTML = 0
+                }
+            }
+        })
+
+
+        ZbtnCancel.onclick = function(){
+            modW.style.display = "none";
+            selectedRow.style.backgroundColor = '';
+        }
+        ZbtnSend.onclick = function(){
+            modW.style.display = "none";
+            selectedRow.style.backgroundColor = 'green'
+        }
+    }
+}
+
+
 
