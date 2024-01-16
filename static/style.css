@@ -59,9 +59,44 @@ ul{
     left: 142px;
 }
 
-.aboutComp p{
-    margin-left: 5%;
+.aboutComp1{
+    background-color: rgb(245, 224, 198);
+    margin: auto;
+    width: 800px;
+    border-radius: 10px;
 }
+
+.aboutComp1P{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.aboutComp2 {
+    
+max-height: 400px;
+max-width: 600px;
+margin: auto;
+margin-top: 10px;
+background-color: rgb(250, 248, 233);
+border-radius: 10px;
+}
+
+.aboutComp2 p{
+    margin-left: 20%;
+font-size: 36px;
+}
+
+.aboutComp2 span{
+    margin-top: 20px;
+font-size: 40px;
+margin-left: 25px;
+margin-bottom: 32px;
+
+border-radius: 3px;
+}
+
+
 
 /*--------------------*/
 .table-container {
