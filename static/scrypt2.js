@@ -1,144 +1,42 @@
-const back = document.getElementById("back");
-const next = document.getElementById("next");
-const sB = document.getElementById("sB");
-const search = document.getElementById("search");
-const fill = document.getElementById("fill");
-let table = document.getElementById('tableRoute');
-let pagination = document.querySelector('.pagination');
-let items = [];
-
+let table = document.getElementById('zayavkiTable');
 let tBody = document.createElement('tbody');
-let iPages = 10;            //кол-во марш на стр
-let thisPage = 0;
 
-async function getData() {
-    const responce = await fetch('http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd');
+
+async function getDataOrders() {
+    const responce = await fetch('http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/orders?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd');
     const data = await responce.json();
-    //console.log(typeof(data.length));
     return data;
 }
 
-async function pagDraw() {
-    let ii;
-    const ppp = await getData();
-    ii = Math.ceil(ppp.length / 10);
-    let BtnB = document.createElement("button")
-    BtnB.id = "back";
-    BtnB.innerHTML = "Назад";
-    pagination.appendChild(BtnB);
-
-    for (let i = 1; i <= ii; i++) {
-        let li = document.createElement('li');
-        li.innerHTML = i;
-        pagination.appendChild(li);
-        items.push(li);
-    }
-
-    let BtnN = document.createElement("button")
-    BtnN.id = "next";
-    BtnN.innerHTML = "Вперед";
-    pagination.appendChild(BtnN);
-
-
-    for (let item of items) {
-        item.addEventListener('click', async function () {                    //DOM = item
-            thisPage = Number(this.innerHTML);
-            let start = (thisPage - 1) * iPages;
-            let end = start + iPages;
-
-            let zapisi = (await getData()).slice(start, end);
-
-            let htmlTR = "";
-            for (let zapis of zapisi) {
-                htmlTR += `<tr>
-                <td>${zapis.name}</td> 
-                <td>${zapis.description}</td> 
-                <td>${zapis.mainObject}</td> 
-                <td>
-                    <button class="select-button" onclick="">Выбрать</button>
-                </td>
-            </tr>`;
-                tBody.innerHTML = htmlTR;
-                table.appendChild(tBody);
-            }
-        });
-    }
-
-    BtnN.addEventListener('click', async function () {
-        thisPage < ii ? thisPage++ : console.log("error");
-        let start = (thisPage - 1) * iPages;
-        let end = start + iPages;
-
-        let zapisi = (await getData()).slice(start, end);
-
-        let htmlTR = "";
-        for (let zapis of zapisi) {
-            htmlTR += `<tr>
-                <td>${zapis.name}</td> 
-                <td>${zapis.description}</td> 
-                <td>${zapis.mainObject}</td> 
-                <td>
-                    <button class="select-button" onclick="">Выбрать</button>
-                </td>
-            </tr>`;
-            tBody.innerHTML = htmlTR;
-            table.appendChild(tBody);
-        }
-    })
-
-    BtnB.addEventListener('click', async function () {
-        thisPage <= 0 ? console.log("error") : thisPage--;
-        let start = (thisPage - 1) * iPages;
-        let end = start + iPages;
-
-        let zapisi = (await getData()).slice(start, end);
-
-        let htmlTR = "";
-        for (let zapis of zapisi) {
-            htmlTR += `<tr>
-                <td>${zapis.name}</td> 
-                <td>${zapis.description}</td> 
-                <td>${zapis.mainObject}</td> 
-                <td>
-                    <button class="select-button" onclick="">Выбрать</button>
-                </td>
-            </tr>`;
-            tBody.innerHTML = htmlTR;
-            table.appendChild(tBody);
-        }
-    })
-
-    // Добавление слушателей событий для кнопок "Выбрать"
-    addSelectButtonListeners();
-
-
+async function getDataRoutes() {
+    const responce = await fetch('http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd');
+    const data = await responce.json();
+    return data;
 }
 
-async function nachP() {
-    thisPage = 1;
-    let start = (thisPage - 1) * iPages;
-    let end = start + iPages;
-
-    let zapisi = (await getData()).slice(start, end);
-
-    let htmlTR = "";
-    for (let zapis of zapisi) {
-        htmlTR += `<tr>
-                <td>${zapis.name}</td> 
-                <td>${zapis.description}</td> 
-                <td>${zapis.mainObject}</td> 
-                <td>
-                    <button class="select-button" onclick="">Выбрать</button>
-                </td>
-            </tr>`;
-        tBody.innerHTML = htmlTR;
-        table.appendChild(tBody);
-    }
+async function DeleteOrders(oId) {
+    const responce = await fetch(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/orders/${oId}?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd`, {
+        method: 'DELETE'
+    });
+    const data = await responce.json();
+    return data;
 }
 
-nachP();
+async function getOrders(oId) {
+    const responce = await fetch(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/orders/${oId}?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd`, {
+        method: 'GET'
+    });
+    const data = await responce.json();
+    return data;
+}
 
-pagDraw()
+
+
+function getRName(routes, Rid) {
+    for (let route of routes) {
+        if (route.id == Rid) return route.name
+    }
+}
 
 function searchPodstr(str, pstr) {
     let k = 0;
@@ -162,76 +60,91 @@ function searchPodstr(str, pstr) {
     return rez;
 }
 
-sB.onclick = function () {
-    thisPage = 1
-    getData().then((datJ) => {
-        let DATA = []
-        let zapisi = []
-        let newData = searchPodstr(datJ, search.value);
-
-        for (let i = 0; i < newData.length; i++) {
-            DATA.push(datJ[newData[i] - 2])
-        }
-
-        let start = (thisPage - 1) * iPages;
-        let end = start + iPages;
-
-        zapisi = DATA.slice(start, end)
-        thisPage += end;
-
-        let htmlTR = "";
-        for (let zapis of zapisi) {
-            htmlTR += `<tr>
-                    <td>${zapis.name}</td> 
-                    <td>${zapis.description}</td> 
-                    <td>${zapis.mainObject}</td> 
-                    <td>
-                        <button class="select-button" onclick="">Выбрать</button>
-                    </td>
-                </tr>`;
-            tBody.innerHTML = htmlTR;
-            table.appendChild(tBody);
-        }
-
-    })
+async function ordersDraw() {
+    const orders = await getDataOrders();
+    const routes = await getDataRoutes();
+    let htmlTR = "";
+    for (let z = 0; z < orders.length; z++) {
+        htmlTR += `<tr>
+                <td>${orders[z].id}</td> 
+                <td>${getRName(routes, orders[z].route_id)}</td> 
+                <td>${orders[z].date}</td> 
+                <td>${orders[z].price}</td> 
+                <td>
+                    <span>  
+                        <button class="seeButton"><img src="static/image/eye.png" width="15px" height="15px" ></button> 
+                        <button class="changeButton"><img src="static/image/change.png" width="15px" height="15px" ></button>
+                        <button class="trashButton"><img src="static/image/trashcan.png" width="25px" height="15px" ></button>
+                    </span> 
+                </td>
+            </tr>`;
+        tBody.innerHTML = htmlTR;
+        table.appendChild(tBody);
+    }
+    seeBLis()
+    changeBLis()
+    trashBLis()
 }
 
-async function selB(button) {
-    // Получаем ближайший родительский элемент tr
-    let row = button;
-    while (row && row.tagName !== 'TR') {
-        row = row.parentNode;
-    }
+ordersDraw()
 
-    // Проверяем, был ли найден родительский элемент
-    if (row && row.tagName === 'TR') {
-        // Изменяем или добавляем стиль фона строки
-        if (row.classList.contains('selected-row')) {
-            row.style.backgroundColor = ''; // Убрать цвет фона
-            row.classList.remove('selected-row');
-        } else {
-            row.style.backgroundColor = 'red'; // Установить цвет фона в красный
-            row.classList.add('selected-row');
-        }
-    } else {
-        console.log("Родительский элемент <tr> не найден.");
-    }
-}
-
-function addSelectButtonListeners() {
-    document.querySelectorAll('.select-button').forEach(button => {
-        console.log("Click 2")
-        button.addEventListener('click', handleSelectButtonClick);
+function seeBLis() {
+    document.querySelectorAll('.seeButton').forEach(button => {
+        button.addEventListener('click', clickBSee);
     });
 }
 
-function handleSelectButtonClick(event) {                                      //нажатие кнопки "Выбрать"
-    const selectedRow = event.target.closest('tr');
-    const currentColor = selectedRow.style.backgroundColor;
-
-    if (currentColor === 'rgb(143, 197, 248)') {
-        selectedRow.style.backgroundColor = ''; 
-    } else {
-        selectedRow.style.backgroundColor = 'rgb(143, 197, 248)';
-    }
+function changeBLis() {
+    document.querySelectorAll('.changeButton').forEach(button => {
+        button.addEventListener('click', clickBChange);
+    });
 }
+
+function trashBLis() {
+    document.querySelectorAll('.trashButton').forEach(button => {
+        button.addEventListener('click', clickBDelete);
+    });
+}
+
+async function clickBDelete(event) {                            //нажатие кнопок 
+    const selectedRow = event.target.closest('tr');
+    orderId = selectedRow.querySelector('td:nth-child(1)').textContent;
+
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    deleteModal.show();
+
+    document.getElementById('DeleteBtn').addEventListener('click', async function () {   
+        deleteModal.hide();
+        await DeleteOrders(orderId);
+
+    });
+}
+
+async function clickBSee(event) {                               //нажатие кнопок 
+    const selectedRow = event.target.closest('tr');
+    orderId = selectedRow.querySelector('td:nth-child(1)').textContent;
+
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    deleteModal.show();
+
+    document.getElementById('DeleteBtn').addEventListener('click', async function () {   
+        deleteModal.hide();
+        await DeleteOrders(orderId);
+
+    });
+
+}
+
+async function clickBChange(event) {                               //нажатие кнопок 
+    const selectedRow = event.target.closest('tr');
+
+
+
+}
+
+
+
+
+
+
+

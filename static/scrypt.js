@@ -16,9 +16,34 @@ let Rname = document.querySelector('.rName')
 let SOption = document.getElementById('Options')
 let Oclass = document.querySelector('.options')
 let hKol = document.getElementById('HQuan')
+let alerts = document.getElementById('alerts')
+let OK = document.getElementById('allOk')
+let NotOk = document.getElementById('allNotOk')
 let predupr = "сурдопереводчик не доступен. MAX количество 10 человек"
-let RoName                                                    //RouteName
+let RoName = {
+    Rname: "",
+    RId: "",
+    GID: {
+
+    },
+    DGID: {
+
+    }
+}                                                    //RouteName
 let items = [];
+let posData = {
+    id: "",
+    guide_id: "",
+    route_id: "",
+    date: "",
+    time: "",
+    duration: 3,
+    persons: "",
+    price: 0,
+    optionFirst: false,
+    optionSecond: false,
+    student_id: "",
+}
 
 
 let tBody = document.createElement('tbody');
@@ -34,6 +59,13 @@ async function getData() {
 
 async function getDataGid(Rid) {
     const responce = await fetch(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes/${Rid}/guides?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd`);
+    const data = await responce.json();
+    //console.log(typeof(data.length));
+    return data;
+}
+
+async function getZayavka(Rid) {
+    const responce = await fetch(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd/orders/33`);
     const data = await responce.json();
     //console.log(typeof(data.length));
     return data;
@@ -63,7 +95,7 @@ async function parser() {
     return oObject;
 }
 
-async function selectBB() {                                
+async function selectBB() {
     let gg = await parser();
     let optn = document.createElement('option');
     optn.value = 0;
@@ -223,7 +255,29 @@ function searchPodstr(str, pstr) {
     return rez;
 }
 
-sB.onclick = function () {                                          
+function searchPodstrfull(str, pstr) {
+    let k = 0;
+    let rez = [];
+    for (let q = 0; q < str.length; q++) {
+        k = str[q].name.indexOf(pstr);
+        if (k !== -1) {
+
+            for (let i = 0; i < pstr.length; i++) {
+
+                if (pstr[i] != str[q].name[k + i]) {
+                    break;
+                }
+
+                if ((pstr[i] == str[q].name[k + i]) && (i == pstr.length - 1)) {
+                    rez.push(str[q]);
+                }
+            }
+        }
+    }
+    return rez;
+}
+
+sB.onclick = function () {
     thisPage = 1
     getData().then((datJ) => {
         let DATA = []
@@ -270,7 +324,6 @@ async function SelectBCl(event) {                                //нажати�
     const currentColor = selectedRow.style.backgroundColor;
 
     if (currentColor === 'rgb(143, 197, 248)') {
-        console.log("dusb 5")
         selectedRow.style.backgroundColor = '';
         let mainHTML = ""
         mmain.innerHTML = mainHTML
@@ -284,11 +337,13 @@ async function SelectBCl(event) {                                //нажати�
     } else {
         selectedRow.style.backgroundColor = 'rgb(143, 197, 248)';
         const nameV = selectedRow.querySelector('td:first-child').textContent;
-        RoName = nameV;
-
+        RoName.Rname = nameV;
         let strr = await getData();
         let gidID = searchPodstr(strr, nameV)
-        let gidData = await getDataGid(gidID[0]);                                     //из-за 3, 31
+        RoName.RId = gidID[0];                                     //из-за 3, 31
+        let gidData = await getDataGid(RoName.RId);
+        RoName.GID = gidData
+
 
         let mainHTML = `
         <h2>Доступные гиды</h2>
@@ -332,7 +387,7 @@ async function SelectBCl(event) {                                //нажати�
         let end = start + iPages;
 
         let zapisi2 = gidData.slice(start, end);
-       
+
 
         let htmlTR = "";
 
@@ -352,7 +407,6 @@ async function SelectBCl(event) {                                //нажати�
         }
     }
     addSlGidBLis()
-
 }
 
 function addSlGidBLis() {
@@ -360,8 +414,6 @@ function addSlGidBLis() {
         button.addEventListener('click', SelectBGidCl);
     });
 }
-
-
 
 async function SelectBGidCl(event) {                               //нажатие кнопки "Выбрать" G
     const selectedRow = event.target.closest('tr');
@@ -372,31 +424,34 @@ async function SelectBGidCl(event) {                               //нажат�
     } else {
         selectedRow.style.backgroundColor = 'rgb(143, 197, 248)';
         modW.style.display = "block";
-
         let Gname = selectedRow.querySelector('td:nth-child(2)').textContent;
-        let Gprice = selectedRow.querySelector('td:nth-child(5)').textContent;
-        
-        fio.innerText = "ФИО Гида: "+Gname;
-        Rname.innerText = "Название маршрута: "+RoName;
 
-        tripDl.addEventListener('change', function(event){
-            price.innerText = (Number(Gprice)*Number(event.target.value))
-            price.text = (Number(Gprice)*Number(event.target.value))
+        RoName.DGID = searchPodstrfull(RoName.GID, Gname)
 
+        fio.innerText = "ФИО Гида: " + RoName.DGID[0].name;
+        Rname.innerText = "Название маршрута: " + RoName.Rname;
+
+        tripDl.addEventListener('change', function (event) {
+            posData.duration = Number(event.target.value)
+            price.innerText = (Number(RoName.DGID[0].pricePerHour) * Number(event.target.value))
+            price.text = (Number(RoName.DGID[0].pricePerHour) * Number(event.target.value))
+            
         })
 
-        SOption.addEventListener('change', function(event){
-            if(event.target.value != 3)
-            {
-                price.innerHTML = price.text
-                price.innerText = Math.ceil(Number(price.innerHTML)*event.target.value);
-            }
-            else{
-                if(hKol.value <=10){
-                    Oclass.lastChild.textContent == predupr? Oclass.lastChild.textContent="" : console.log("Ok")
-                    hKol.value <=5? price.innerText = Math.ceil(Number(price.innerHTML)*1.15) :price.innerText = Math.ceil(Number(price.innerHTML)*1.25)
+        SOption.addEventListener('change', function (event) {
+            event.target.value==3? posData.optionFirst = true :posData.optionSecond =false
+            event.target.value == 0.75? posData.optionSecond =true :posData.optionFirst = false
 
-                }else{
+            if (event.target.value != 3) {
+                price.innerHTML = price.text
+                price.innerText = Math.ceil(Number(price.innerHTML) * event.target.value);
+            }
+            else {
+                if (hKol.value <= 10) {
+                    Oclass.lastChild.textContent == predupr ? Oclass.lastChild.textContent = "" : console.log("Ok")
+                    hKol.value <= 5 ? price.innerText = Math.ceil(Number(price.innerHTML) * 1.15) : price.innerText = Math.ceil(Number(price.innerHTML) * 1.25)
+
+                } else {
                     let i = document.createElement('p')
                     i.className = "translater"
                     i.textContent = predupr
@@ -407,16 +462,50 @@ async function SelectBGidCl(event) {                               //нажат�
         })
 
 
-        ZbtnCancel.onclick = function(){
+        ZbtnCancel.onclick = function () {
             modW.style.display = "none";
             selectedRow.style.backgroundColor = '';
         }
-        ZbtnSend.onclick = function(){
+        
+        ZbtnSend.onclick = function () {
             modW.style.display = "none";
             selectedRow.style.backgroundColor = 'green'
+            let vremya = document.getElementById('Time')
+            let chislo = document.getElementById('Date')
+
+            posData.guide_id=Number(RoName.DGID[0].id),
+            posData.route_id= Number(RoName.RId),
+            posData.date= chislo.value,
+            posData.time= vremya.value,
+            posData.persons= Number(hKol.value),
+            posData.price= Number(price.text),
+            posData.student_id= 25
+
+            let formData = new URLSearchParams();
+            for (const [key, value] of Object.entries(posData)) {
+                formData.append(key, value);
+            }
+            
+            fetch("http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/orders?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd", {
+                method: "POST",
+                headers: new Headers({
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }),
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Успешно отправлено:", data);
+                    alerts.style.display = 'block'
+                    OK.style.display = 'block'
+                    alerts.style.backgroundColor = 'rgb(138, 215, 138)'
+                })
+                .catch(error => {
+                    console.error("Ошибка отправки запроса:", error);
+                    alerts.style.display = 'block'
+                    NotOk.style.display = 'block'
+                    alerts.style.backgroundColor = 'rgb(224, 106, 129)'
+                });
         }
     }
 }
-
-
-

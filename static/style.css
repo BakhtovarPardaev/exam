@@ -1,29 +1,34 @@
-*{
+* {
     margin: 0;
 }
 
-header{
+body{
+    background-color:#ccc
+}
+
+header {
     background-color: rgb(93, 90, 90);
 }
 
 .site_icon {
     display: inline-block;
     margin: 30px;
-    
+
 }
-.navig{
+
+.navig {
     display: block;
     position: absolute;
     right: 3%;
     margin-top: 1.5%;
     max-width: 50%;
-    
-    
+
+
 }
 
-ul{
+ul {
     margin: revert;
-    list-style: none; 
+    list-style: none;
 }
 
 
@@ -37,65 +42,47 @@ ul{
     padding: 13px;
 }
 
-.navig span{
+.navig span {
     margin-left: 40px;
 }
+
 .navig a:hover {
     color: black;
     background-color: rgb(206, 203, 158);
     transition: color 0.5s, border-color 0.5s, background-color 1s;
 }
 
-.comp_name{
+.comp_name {
     font-size: 40px;
     position: absolute;
     top: 20px;
     left: 140px;
 }
-.comp{
+
+.comp {
     position: absolute;
     font-size: 24;
     top: 65px;
     left: 142px;
 }
 
-.aboutComp1{
+.aboutComp1 {
     background-color: rgb(245, 224, 198);
     margin: auto;
     width: 800px;
     border-radius: 10px;
 }
 
-.aboutComp1P{
+.aboutComp1P {
     margin-left: 10px;
     margin-right: 10px;
     font-size: 24px;
 }
 
-.aboutComp2 {
-    
-max-height: 400px;
-max-width: 600px;
-margin: auto;
-margin-top: 10px;
-background-color: rgb(250, 248, 233);
-border-radius: 10px;
+.immg{
+    height: 100px;
+    width: 100px;
 }
-
-.aboutComp2 p{
-    margin-left: 20%;
-font-size: 36px;
-}
-
-.aboutComp2 span{
-    margin-top: 20px;
-font-size: 40px;
-margin-left: 25px;
-margin-bottom: 32px;
-
-border-radius: 3px;
-}
-
 
 
 /*--------------------*/
@@ -115,27 +102,29 @@ border-radius: 3px;
 }
 
 
-.selectB{
+.selectB {
     position: absolute;
     top: 24px;
     right: 5%;
 
 }
+
 select {
     size: 10pc;
     max-width: 120px;
 }
-.search-form{
+
+.search-form {
     margin-top: 3%;
     margin-left: 5%;
-    
+
 }
 
 .form-container {
     width: 800px;
-    margin: auto; 
+    margin: auto;
     position: relative;
-    border: 2px solid black; 
+    border: 2px solid black;
     background-color: beige;
 }
 
@@ -143,20 +132,20 @@ select {
     margin-top: 5%;
     margin-left: 5%;
     width: 90%;
-    border-collapse: collapse; 
+    border-collapse: collapse;
     background-color: azure;
 }
 
 .table-container th,
 .table-container td {
     border: 2px solid black;
-    padding: 8px; 
+    padding: 8px;
     text-align: center;
     max-height: 110px;
     overflow: auto;
 }
 
-.table-container th{
+.table-container th {
     background-color: rgb(176, 176, 176);
 }
 
@@ -170,26 +159,27 @@ select {
 
 .pagination button {
     display: inline;
-    padding: 5px 10px; 
+    padding: 5px 10px;
     margin: 20px;
-    border: 1px solid black; 
+    border: 1px solid black;
 }
-.pagination ul{
+
+.pagination ul {
     text-align: center;
     list-style: none;
 }
 
-.pagination li{
+.pagination li {
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    padding: 1px 8px;
+    width: 30px;
+    height: 30px;
     margin-right: 5px;
+    text-align: center;
     border: 1px solid black;
     background-color: rgb(176, 176, 176);
 }
 
-.pagination li:active{
+.pagination li:active {
     background-color: rgb(112, 112, 255);
 }
 
@@ -205,22 +195,23 @@ select {
     position: absolute;
     top: 24px;
     right: 5%;
-    
+
 }
 
-.lan-checkbox{
-    margin-top: 3%;   /*=====-==============================================*/
+.lan-checkbox {
+    margin-top: 3%;
+    /*=====-==============================================*/
 }
 
-.lan-checkbox input{
+.lan-checkbox input {
     margin-left: 5%;
 }
 
 .form-container2 {
     width: 800px;
-    margin: auto; 
+    margin: auto;
     position: relative;
-    border: 2px solid black; 
+    border: 2px solid black;
     background-color: beige;
     margin-top: 1.5%;
 }
@@ -231,7 +222,7 @@ select {
     margin-bottom: 3%;
     width: 90%;
     height: 50px;
-    border-collapse: collapse; 
+    border-collapse: collapse;
     background-color: azure;
 
 }
@@ -239,20 +230,21 @@ select {
 .table-container2 th,
 .table-container2 td {
     border: 2px solid black;
-    padding: 8px; 
+    padding: 8px;
     text-align: center;
 }
-.table-container2 th{
+
+.table-container2 th {
     background-color: rgb(176, 176, 176);
 }
 
-.footer{
-    background-color: rgb(41, 41, 41);
+.footer {
+    background-color: rgb(93, 90, 90);
     height: 60px;
 }
 
-.container p{
-    margin-top: 8px;
+.container p {
+    margin-top: 0px;
     margin-left: 50px;
 }
 
@@ -261,22 +253,24 @@ h2 {
     text-align: center;
     margin-bottom: 1%;
 }
-.routs{
+
+.routs {
     margin-top: 5%;
     margin-bottom: 3%;
 }
 
-.zayavki{
+.zayavki {
     margin-top: 5%;
     margin-bottom: 3%;
 }
 
-.gidy{
+.gidy {
     margin-top: 3%;
     margin-bottom: 3%;
 }
+
 /*------------------------------------------------------------*/
-.modWin{
+.modWin {
 
     display: none;
     position: fixed;
@@ -287,7 +281,7 @@ h2 {
 
 }
 
-.modalInside{
+.modalInside {
     max-width: 40%;
     max-height: 70%;
     margin: auto;
@@ -297,89 +291,111 @@ h2 {
     border: 2px rgb(72, 8, 8);
 }
 
-.close{
-    border: 1px solid red;
-    color: black;
-    float: right;
-    border-radius: 4px;
-
+.modWinLk {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(77, 77, 240, 0.5);
 }
 
-.close:hover{
-    background-color: rgb(221, 106, 106);
+.modalInsideLk {
+    max-width: 40%;
+    max-height: 70%;
+    margin: auto;
+    margin-top: 15%;
+    margin-bottom: 25%;
+    background-color: rgb(177, 215, 236);
+    border: 2px rgb(72, 8, 8);
 }
 
-.FIO{
+.FIO {
     margin-top: 15px;
     margin-bottom: 10px;
     margin-left: 2%;
 }
 
-.rName{
+.rName {
     margin-top: 15px;
     margin-bottom: 10px;
     margin-left: 2%;
 }
 
-.Price{
+.Price {
     margin-top: 15px;
     margin-bottom: 10px;
     margin-left: 2%;
 }
 
 
-.modalInside div{
+.modalInside div {
     margin-top: 20px;
     margin-left: 4%;
     margin-right: 15px;
     display: inline-block;
 }
 
-.tripDlit select{
+.tripDlit select {
     display: flex;
     margin: auto;
 }
 
-.humQuantity input{
- width: 40px;
+.humQuantity input {
+    width: 40px;
 }
 
-.tripTime input{
+.tripTime input {
     width: 80px;
 }
 
-.tripDate input{
-    width: 80px;
+.tripDate input {
+    width: auto;
 }
 
-.options{
+.options {
     margin-top: 30px;
-   text-align: center;
+    text-align: center;
     font-size: 24px;
 }
 
-.opt1{
-    margin-left: 25%;
-    background-color: rgb(177, 255, 177);
-
-}
-.opt2{
-    margin-left: 15%;
-    background-color: rgb(177, 255, 177);
-    
+#Options{
+    width: 130px;
+    font-size: 14px;
+ 
 }
 
-.translater{
-    
-   font-size: 18px;
-   color: red;
-   margin-top: 15px;
-   margin-left: 5%;
+.translater {
+
+    font-size: 18px;
+    color: red;
+    margin-top: 15px;
+    margin-left: 5%;
 }
 
-.Zbutton{
+.Zbutton {
+    position: relative;
+    margin: auto;
+}
+
+.ZbuttonLk {
     position: relative;
     margin-left: 90%;
+}
+
+.alerts{
+    margin-top: 20px;
+    display: none;
+    height: 70px;
+    width: 800px;
+    border-radius: 14px;
+    margin: auto;
+}
+
+.alerts span{
+    display: none;
+    text-align: center;
+    font-size: 28px;
 }
 
 
