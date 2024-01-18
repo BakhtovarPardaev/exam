@@ -14,23 +14,133 @@
 </head>
 
 <body>
-  <!-- Modal -->
-  <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Вы точно хотите удалить эту заявку
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Нет</button>
+                    <button type="button" class="btn btn-primary" id="DeleteBtn">Да</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          Вы точно хотите удалить эту заявку
+    </div>
+
+    <div class="modal fade" id="seeOrders" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Просмотр
+                        заявки</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h6>ФИО гида: <span id="selGid"></span></h6>
+                        </div>
+                        <div class="col-12">
+                            <h6>Маршрут: <span id="selRoute"></span></h6>
+                        </div>
+                        <div class="col-6 text-center">
+                            <h6>Дата: <span id="seldate"></span></h6>
+                        </div>
+                        <div class="col-6 text-center">
+                            <h6>Начало: <span id="selNachalo"></span></h6>
+                        </div>
+                        <div class="col-12 text-center mt-3">
+                            <h6>Длительность: <span id="selDuration"></span></h6>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h6>Количество человек: <span id="selHQuantity"></span></h6>
+                        </div>
+                        <div class="col-12 text-center mt-3 mb-3">
+                            <h6>Дополнительные опции</h6>
+                        </div>
+                        <div class="col-12">
+                            <h7><span id="Options"></span></h7>
+                            <h7><span id="OptDetail"></span></h7>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h6>Итоговая цена: <span id="TotPrace"></span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Нет</button>
-          <button type="button" class="btn btn-primary" id="DeleteBtn">Да</button>
+    </div>
+
+    <div class="modal fade" id="changeOrders" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5">Редактирование
+                заявки</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-12" >
+                  <h6>ФИО гида: <span id="FIO"></span></h6>
+                </div>
+                <div class="col-12">
+                  <h6>Выбранный маршрут: <span id="RouteN"></span></h6>
+                </div>
+                <div class="col-12 text-center mt-3 mb-3">
+                  <h6>Детали экскурсии</h6>
+                </div>
+                <div class="col-6 text-center">
+                  <label class="form_label me-2">Дата</label>
+                  <input class="form_input text-center" type="date" id="newChislo">
+                </div>
+                <div class="col-6 text-center">
+                  <label class="form_label me-2">Начало</label>
+                  <input class="form_input text-center" type="time" id="newTime">
+                </div>
+                <div class="col-12 text-center mt-3">
+                  <select class="form-select" id="durationSelect" aria-label="Длительность">
+                    <option selected>Длительность</option>
+                    <option value="1">1 час</option>
+                    <option value="2">2 часа</option>
+                    <option value="3">3 часа</option>
+                  </select>
+                </div>
+                <div class="col-12 mt-3">
+                  <label class="form_label me-2">Количество человек</label>
+                  <input class="form_input text-center" type="number" id="Hkolich">
+                </div>
+                <div class="col-12 text-center mt-3 mb-3">
+                  <h6>Дополнительные опции</h6>
+                </div>
+                <div class="col-12">
+                    <select class="form-select" id="OPT" aria-label="Длительность">
+                        <option selected></option>
+                        <option value="1">Сурдопереводчик</option>
+                        <option value="2">Скидка пенсионерам</option>
+                      </select>
+                </div>
+                <div class="col-12 mt-3">
+                  <h6>Итоговая цена: <span id="Tprice"></span></h6>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Отмена</button>
+              <button type="button" class="btn btn-primary" id="submitBtnModal" >Отправить</button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
 
     <header>

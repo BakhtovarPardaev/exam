@@ -51,24 +51,38 @@ let iPages = 10;            //кол-во марш на стр
 let thisPage = 0;
 
 async function getData() {
-    const responce = await fetch('http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd');
-    const data = await responce.json();
-    //console.log(typeof(data.length));
-    return data;
+    try {
+        const responce = await fetch('http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd');
+        const data = await responce.json();
+        //console.log(typeof(data.length));
+        return data;
+
+    } catch (error) {
+        console.log("ERROR", error)
+    }
 }
 
 async function getDataGid(Rid) {
-    const responce = await fetch(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes/${Rid}/guides?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd`);
-    const data = await responce.json();
-    //console.log(typeof(data.length));
-    return data;
+    try {
+        const responce = await fetch(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes/${Rid}/guides?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd`);
+        const data = await responce.json();
+        //console.log(typeof(data.length));
+        return data;
+    } catch (error) {
+        console.log("ERROR", error)
+    }
 }
 
 async function getZayavka(Rid) {
-    const responce = await fetch(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd/orders/33`);
-    const data = await responce.json();
-    //console.log(typeof(data.length));
-    return data;
+    try {
+        const responce = await fetch(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd/orders/33`);
+        const data = await responce.json();
+        //console.log(typeof(data.length));
+        return data;
+
+    } catch (error) {
+        console.log("ERROR", error)
+    }
 }
 
 async function parser() {
@@ -96,16 +110,16 @@ async function parser() {
 }
 
 async function selectBB() {
-    let gg = await parser();
+    let ggData = await parser();
     let optn = document.createElement('option');
     optn.value = 0;
     optn.text = "не выбрано";
     selectB.appendChild(optn);
 
-    for (let i = 0; i < gg.length; i++) {
+    for (let i = 0; i < ggData.length; i++) {
         let optn = document.createElement('option');
         optn.value = i + 1;
-        optn.text = gg[i];
+        optn.text = ggData[i];
         selectB.appendChild(optn);
     }
 }
@@ -114,15 +128,15 @@ selectBB();
 
 
 async function pagDraw() {
-    let ii;
-    const ppp = await getData();
-    ii = Math.ceil(ppp.length / 10);
+    let nData;
+    const oData = await getData();
+    nData = Math.ceil(oData.length / 10);
     let BtnB = document.createElement("button")
     BtnB.id = "back";
     BtnB.innerHTML = "Назад";
     pagination.appendChild(BtnB);
 
-    for (let i = 1; i <= ii; i++) {
+    for (let i = 1; i <= nData; i++) {
         let li = document.createElement('li');
         li.innerHTML = i;
         pagination.appendChild(li);
@@ -160,7 +174,7 @@ async function pagDraw() {
     }
 
     BtnN.addEventListener('click', async function () {
-        thisPage < ii ? thisPage++ : console.log("error");
+        thisPage < nData ? thisPage++ : console.log("error");
         let start = (thisPage - 1) * iPages;
         let end = start + iPages;
 
@@ -317,8 +331,6 @@ function addSlBLis() {
     });
 }
 
-
-
 async function SelectBCl(event) {                                //нажатие кнопки "Выбрать" M
     const selectedRow = event.target.closest('tr');
     const currentColor = selectedRow.style.backgroundColor;
@@ -435,12 +447,14 @@ async function SelectBGidCl(event) {                               //нажат�
             posData.duration = Number(event.target.value)
             price.innerText = (Number(RoName.DGID[0].pricePerHour) * Number(event.target.value))
             price.text = (Number(RoName.DGID[0].pricePerHour) * Number(event.target.value))
-            
+
         })
 
         SOption.addEventListener('change', function (event) {
-            event.target.value==3? posData.optionFirst = true :posData.optionSecond =false
-            event.target.value == 0.75? posData.optionSecond =true :posData.optionFirst = false
+            if (event.target.value == 0.75) {
+                posData.optionSecond = 1
+                posData.optionFirst = 0
+            }
 
             if (event.target.value != 3) {
                 price.innerHTML = price.text
@@ -448,6 +462,8 @@ async function SelectBGidCl(event) {                               //нажат�
             }
             else {
                 if (hKol.value <= 10) {
+                    posData.optionFirst = 1
+                    posData.optionSecond = 0
                     Oclass.lastChild.textContent == predupr ? Oclass.lastChild.textContent = "" : console.log("Ok")
                     hKol.value <= 5 ? price.innerText = Math.ceil(Number(price.innerHTML) * 1.15) : price.innerText = Math.ceil(Number(price.innerHTML) * 1.25)
 
@@ -459,6 +475,8 @@ async function SelectBGidCl(event) {                               //нажат�
                     price.innerHTML = 0
                 }
             }
+            console.log("OPTfies", posData.optionFirst)
+            console.log("OPTsecond", posData.optionSecond)
         })
 
 
@@ -466,26 +484,26 @@ async function SelectBGidCl(event) {                               //нажат�
             modW.style.display = "none";
             selectedRow.style.backgroundColor = '';
         }
-        
+
         ZbtnSend.onclick = function () {
             modW.style.display = "none";
             selectedRow.style.backgroundColor = 'green'
             let vremya = document.getElementById('Time')
             let chislo = document.getElementById('Date')
 
-            posData.guide_id=Number(RoName.DGID[0].id),
-            posData.route_id= Number(RoName.RId),
-            posData.date= chislo.value,
-            posData.time= vremya.value,
-            posData.persons= Number(hKol.value),
-            posData.price= Number(price.text),
-            posData.student_id= 25
+            posData.guide_id = Number(RoName.DGID[0].id),
+                posData.route_id = Number(RoName.RId),
+                posData.date = chislo.value,
+                posData.time = vremya.value,
+                posData.persons = Number(hKol.value),
+                posData.price = Number(price.text),
+                posData.student_id = 25
 
             let formData = new URLSearchParams();
             for (const [key, value] of Object.entries(posData)) {
                 formData.append(key, value);
             }
-            
+
             fetch("http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/orders?api_key=e228b9a7-e4f8-4fc7-8b70-0974917b46fd", {
                 method: "POST",
                 headers: new Headers({
